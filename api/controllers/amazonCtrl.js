@@ -13,7 +13,7 @@ module.exports = {
         version:   '2013-08-01'
     });
     opHelper.execute('ItemSearch', {
-        'SearchIndex': 'All',
+        'SearchIndex': req.query.search,
         'Keywords': req.query.item,
         //'ResponseGroup': 'ItemAttributes,Offers,SalesRank,Reviews,Images,VariationSummary',
         'ResponseGroup': 'Large',

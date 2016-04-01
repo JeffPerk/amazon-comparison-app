@@ -1,22 +1,22 @@
 angular.module('compareApp', ['ui.router'])
 .config(function($stateProvider, $httpProvider, $urlRouterProvider) {
-$urlRouterProvider.otherwise('login');
+$urlRouterProvider
+  .otherwise('login');
 
   $stateProvider
     .state('home', {
-      url: '/',
+      url: '/home',
       templateUrl: '../views/homeTmpl.html',
-      controller: 'compareInfoCtrl'
-    })
-    .state('compareInfo', {
-      url:'/compareInfo',
-      templateUrl: '../views/speedballTmpl.html',
-      controller: 'compareInfoCtrl'
     })
     .state('login', {
       url: '/login',
       templateUrl: '../views/loginTmpl.html'
+      // controller: 'loginCtrl'
     });
+    // .state('product', {
+    //   url: '/poduct/:productId',
+    //   templateUrl: '../views/product.html'
+    // });
 
 
 });

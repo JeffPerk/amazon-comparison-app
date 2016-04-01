@@ -1,67 +1,64 @@
-<nav id="tf-menu" class="navbar navbar-default navbar-fixed-top">
-  <div class="container">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="index.html">amazoncompare</a>
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right">
-        <li class="active"><a href="#tf-home" class="page-scroll">Search</a></li>
-        <li class=""><a href="#tf-about" class="page-scroll">Wishlist</a></li>
-        <li class=""><a href="#tf-about" class="page-scroll">Login</a></li>
-      </ul>
-    </div>
-    <!-- /.navbar-collapse -->
-  </div>
-  <!-- /.container-fluid -->
-</nav>
-<div id="tf-home" class="text-center">
-  <div class="overlay">
-    <div class="content">
-      <h1 style="color: white">Welcome to <strong><span class="color">amazonCompare</span></strong></h1>
-      <p class="lead">This app compares the <strong style="color: #FCAC45">top 5 products</strong> from your search to help find the <strong style="color: #FCAC45">best product for you</strong></p>
-      <!-- <div class="search-container"> -->
-      <form method="get">
-        <fieldset>
-          <input type="text" ng-model="keyword"/>
-          <button ng-show="!showLoader" type="submit" ng-click="getInfo(keyword)"><i class="fa fa-search"></i></button>
-          <img ng-show="showLoader" class="loader" src="../styles/images/orangegif.gif"/>
-        </fieldset>
-      </form>
-      <!-- <form class="search-form" method="get">
-          <input type="text" class="search-input" ng-model="keyword" placeholder="keywords">
-          <img ng-show="showLoader" class="loader" src="../styles/images/orangegif.gif" />
-          <div ng-show="!showLoader" class="search-button" ng-click="getInfo(keyword)">Submit</div>
-        </form> -->
-      <!-- </div> -->
-    </div>
-    <!-- <a href="#tf-about" class="fa fa-angle-down page-scroll"></a> -->
-  </div>
-</div>
-</div>
-<div id="tf-about">
-  <div class="container">
-    <div class="row">
-      <bar-chart class="bar-chart" data="data"></bar-chart>
-    </div>
-  </div>
-</div>
-<div id="tf-team" class="text-center">
-  <div class="overlay">
+<section id="main-container" ng-controller="amazonDataController">
+  <nav id="tf-menu" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">amazoncompare</a>
+      </div>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li class=""><a href="#">Wishlist</a></li>
+          <li class="logout"><a href="#" ng-click="logoutUser()">Log Out</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="sub-nav-search" ng-show="showSearch">
+      <div class="search-container">
+        <div>
+          <select class="form-control" ng-options="index.value as index.value for index in searchIndices" ng-model="searchIndex">
+          </select>
+        </div>
+        <div class="searchInput">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search" ng-model="keyword"/>
+            <span class="input-group-addon">
+              <i ng-show="!showLoader" type="submit" ng-click="getInfo(keyword, searchIndex)" class="glyphicon glyphicon-search"></i>
+              <img ng-show="showLoader" class="loader-nav" src="../styles/images/orangegif.gif" />
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div id="tf-home" class="text-center">
+    <div class="overlay">
+      <div class="content">
+        <h1 style="color: white">Welcome to <strong><span class="color">amazonCompare</span></strong></h1>
+        <p class="lead">This app compares the <strong style="color: #FCAC45">top 5 products</strong> from your search to help find the <strong style="color: #FCAC45">best product for you</strong></p>
+        <form method="get">
+          <fieldset>
+            <input type="text" ng-model="keyword" />
+            <button ng-show="!showLoader" type="submit" ng-click="getInfo(keyword, searchIndex)"><i class="fa fa-search"></i></button>
+            <img ng-show="showLoader" class="loader" src="../styles/images/orangegif.gif" />
+          </fieldset>
+        </form>
+      </div>
     </div>
   </div>
-</div>
-</div>
-<div id="tf-services" class="text-center">
-  <div class="container">
+  <div id="tf-about">
+    <div class="container">
+      <div class="row">
+        <bar-chart data-toggle="modal" data-target="#myModal" login-check="loginCheck" data="barChartData" modal-data="modalData"></bar-chart>
+      </div>
+    </div>
   </div>
-</div>
+  <div ui-view></div>
+
+</section>
+
+<modal data="productData"></modal>

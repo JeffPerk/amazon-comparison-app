@@ -3,6 +3,7 @@ var _ = require('underscore');
 var q = require('q');
 
 module.exports.parseResults = function(results) {
+  // console.log(results);
     var deferred = q.defer();
     var overview = results.ItemSearchResponse.Items[0].Item;
     var itemsOverview = {
@@ -17,19 +18,19 @@ module.exports.parseResults = function(results) {
     function getItems(data) {
         console.log(data);
         var item = [];
-        data.map(function(i) {
-            var attributes = i.ItemAttributes[0];
-            var offerSummary = i.OfferSummary[0];
-            var offer = validateOffer(i);
-            var customerReviews = validateCustomerReviews(i);
-            var editorialReviews = validateEditReviews(i);
+        data.map(function(k, i) {
+            var attributes = k.ItemAttributes[0];
+            var offerSummary = k.OfferSummary[0];
+            var offer = validateOffer(k);
+            var customerReviews = validateCustomerReviews(k);
+            var editorialReviews = validateEditReviews(k);
             // var editorialReviews = i.EditorialReviews[0].EditorialReview[0];
             item.push({
                 brand: validateBrand(attributes),
-                productLink: validateProductLink(i),
+                productLink: validateProductLink(k),
                 images: {
-                    thumbnail: i.ImageSets[0].ImageSet[0].ThumbnailImage[0].URL[0],
-                    large: i.ImageSets[0].ImageSet[0].LargeImage[0].URL[0]
+                    thumbnail: validateImage(k),
+                    large: validateLargeImage(k)
                 },
                 // itemDimensions: {
                 //     height: attributes.ItemDimensions[0].Height[0] || 0,
@@ -43,10 +44,10 @@ module.exports.parseResults = function(results) {
                 description: editorialReviews,
                 manufacturer: validateManufacturer(attributes),
                 feature: attributes.Feature,
-                salesRank: validateSalesRank(i),
+                salesRank: validateSalesRank(k),
                 offerNew: validateOfferNew(offerSummary),
-                totalNew: offerSummary.TotalNew[0],
-                totalUsed: offerSummary.TotalUsed[0],
+                totalNew: validateTotalNew(offerSummary),
+                totalUsed: validateTotalUsed(offerSummary),
                 offerUsed: validateOfferUsed(offerSummary),
                 amountSaved: getAmountSaved(offer),
                 percentageSaved: getPercentageSaved(offer),
@@ -57,6 +58,46 @@ module.exports.parseResults = function(results) {
             });
         });
         return item;
+    }
+
+    function validateTotalUsed(offerSummary) {
+      if (offerSummary.TotalUsed && offerSummary.TotalUsed[0]) {
+        return offerSummary.TotalUsed[0];
+      } else {
+        return offerSummary.TotalUsed;
+      }
+    }
+
+    function validateTotalNew(offerSummary) {
+      if (offerSummary.TotalNew && offerSummary.TotalNew[0]) {
+        return offerSummary.TotalNew[0];
+      } else {
+        return offerSummary.TotalNew;
+      }
+    }
+
+    function validateLargeImage(i) {
+      if (i.ImageSets && i.ImageSets[0] && i.ImageSets[0].ImageSet && i.ImageSets[0].ImageSet[0] && i.ImageSets[0].ImageSet[0].LargeImage && i.ImageSets[0].ImageSet[0].LargeImage[0] && i.ImageSets[0].ImageSet[0].LargeImage[0].URL && i.ImageSets[0].ImageSet[0].LargeImage[0].URL[0]) {
+        return i.ImageSets[0].ImageSet[0].LargeImage[0].URL[0];
+      } else if (i.ImageSets && i.ImageSets[0] && i.ImageSets[0].ImageSet && i.ImageSets[0].ImageSet[0] && i.ImageSets[0].ImageSet[0].LargeImage && i.ImageSets[0].ImageSet[0].LargeImage[0] && i.ImageSets[0].ImageSet[0].LargeImage[0].URL) {
+        return i.ImageSets[0].ImageSet[0].LargeImage[0].URL;
+      } else if (i.ImageSets && i.ImageSets[0] && i.ImageSets[0].ImageSet && i.ImageSets[0].ImageSet[0] && i.ImageSets[0].ImageSet[0].LargeImage && i.ImageSets[0].ImageSet[0].LargeImage[0]) {
+        return i.ImageSets[0].ImageSet[0].LargeImage[0];
+      } else if (i.ImageSets && i.ImageSets[0] && i.ImageSets[0].ImageSet && i.ImageSets[0].ImageSet[0] && i.ImageSets[0].ImageSet[0].LargeImage) {
+        return i.ImageSets[0].ImageSet[0].LargeImage;
+      }
+    }
+
+    function validateImage(i) {
+      if (i.ImageSets && i.ImageSets[0] && i.ImageSets[0].ImageSet && i.ImageSets[0].ImageSet[0] && i.ImageSets[0].ImageSet[0].ThumbnailImage && i.ImageSets[0].ImageSet[0].ThumbnailImage[0] && i.ImageSets[0].ImageSet[0].ThumbnailImage[0].URL && i.ImageSets[0].ImageSet[0].ThumbnailImage[0].URL[0]) {
+        return i.ImageSets[0].ImageSet[0].ThumbnailImage[0].URL[0];
+      } else if (i.ImageSets && i.ImageSets[0] && i.ImageSets[0].ImageSet && i.ImageSets[0].ImageSet[0] && i.ImageSets[0].ImageSet[0].ThumbnailImage && i.ImageSets[0].ImageSet[0].ThumbnailImage[0] && i.ImageSets[0].ImageSet[0].ThumbnailImage[0].URL) {
+        return i.ImageSets[0].ImageSet[0].ThumbnailImage[0].URL;
+      } else if (i.ImageSets && i.ImageSets[0] && i.ImageSets[0].ImageSet && i.ImageSets[0].ImageSet[0] && i.ImageSets[0].ImageSet[0].ThumbnailImage && i.ImageSets[0].ImageSet[0].ThumbnailImage[0] && i.ImageSets[0].ImageSet[0].ThumbnailImage[0]) {
+        return i.ImageSets[0].ImageSet[0].ThumbnailImage[0];
+      } else if (i.ImageSets && i.ImageSets[0] && i.ImageSets[0].ImageSet && i.ImageSets[0].ImageSet[0] && i.ImageSets[0].ImageSet[0].ThumbnailImage && i.ImageSets[0].ImageSet[0].ThumbnailImage[0] && i.ImageSets[0].ImageSet[0].ThumbnailImage) {
+        return i.ImageSets[0].ImageSet[0].ThumbnailImage;
+      }
     }
 
     function validateOfferNew(offerSummary) {
@@ -70,7 +111,6 @@ module.exports.parseResults = function(results) {
         return offerSummary.LowestNewPrice;
       }
     }
-
 
     function validateCustomerReview(customerReviews) {
       if (customerReviews && customerReviews.IFrameURL && customerReviews.IFrameURL[0]) {
@@ -148,8 +188,10 @@ module.exports.parseResults = function(results) {
          clean = i.Offers[0].Offer[0];
       } else if(i.Offers && i.Offers[0].Offer){
          clean = i.Offers[0].Offer;
+      } else if (i.Offers && i.Offers[0]){
+        clean = i.Offers[0];
       } else {
-        return i.Offers[0];
+        clean = i.Offer;
       }
       return clean;
     }
