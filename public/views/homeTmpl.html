@@ -8,11 +8,11 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">amazoncompare</a>
+        <a class="navbar-brand" href="index.html">top5</a>
       </div>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
-          <li class=""><a href="#">Wishlist</a></li>
+          <li class=""><a ui-sref="wishlist" ng-click="wishlistCheck()">Wishlist</a></li>
           <li class="logout"><a href="#" ng-click="logoutUser()">Log Out</a></li>
         </ul>
       </div>
@@ -26,7 +26,7 @@
         <div class="searchInput">
           <div class="input-group">
             <input type="text" class="form-control" placeholder="Search" ng-model="keyword"/>
-            <span class="input-group-addon">
+            <span class="input-group-addon" type="button">
               <i ng-show="!showLoader" type="submit" ng-click="getInfo(keyword, searchIndex)" class="glyphicon glyphicon-search"></i>
               <img ng-show="showLoader" class="loader-nav" src="../styles/images/orangegif.gif" />
             </span>
@@ -38,10 +38,12 @@
   <div id="tf-home" class="text-center">
     <div class="overlay">
       <div class="content">
-        <h1 style="color: white">Welcome to <strong><span class="color">amazonCompare</span></strong></h1>
+        <h1 style="color: white">Welcome to <strong><span class="color">top5</span></strong></h1>
         <p class="lead">This app compares the <strong style="color: #FCAC45">top 5 products</strong> from your search to help find the <strong style="color: #FCAC45">best product for you</strong></p>
         <form method="get">
           <fieldset>
+            <select style="margin-left: -39px; width: 288px;" class="form-control" ng-options="index.value as index.value for index in searchIndices" ng-model="searchIndex">
+            </select>
             <input type="text" ng-model="keyword" />
             <button ng-show="!showLoader" type="submit" ng-click="getInfo(keyword, searchIndex)"><i class="fa fa-search"></i></button>
             <img ng-show="showLoader" class="loader" src="../styles/images/orangegif.gif" />
@@ -53,7 +55,7 @@
   <div id="tf-about">
     <div class="container">
       <div class="row">
-        <bar-chart data-toggle="modal" data-target="#myModal" login-check="loginCheck" data="barChartData" modal-data="modalData"></bar-chart>
+        <bar-chart data-toggle="modal" data-target="#myModal" login-check="loginCheck" home-check="homeCheck" wish-check="wishCheck" data="barChartData" modal-data="modalData"></bar-chart>
       </div>
     </div>
   </div>

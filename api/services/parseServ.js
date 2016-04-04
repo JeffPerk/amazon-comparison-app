@@ -3,7 +3,6 @@ var _ = require('underscore');
 var q = require('q');
 
 module.exports.parseResults = function(results) {
-  // console.log(results);
     var deferred = q.defer();
     var overview = results.ItemSearchResponse.Items[0].Item;
     var itemsOverview = {
@@ -16,7 +15,6 @@ module.exports.parseResults = function(results) {
     };
 
     function getItems(data) {
-        console.log(data);
         var item = [];
         data.map(function(k, i) {
             var attributes = k.ItemAttributes[0];

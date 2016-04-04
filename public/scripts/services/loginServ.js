@@ -9,7 +9,7 @@ var baseUrl = 'http://localhost:9000';
         username: username,
         password: password
       }
-    }).success(function() {
+    }).success(function(resp) {
       $state.go('home');
     });
   };

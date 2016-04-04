@@ -1,10 +1,10 @@
+/*modal styles*/
 .modal-footer {
 padding: 15px;
 text-align: right;
 border-top: 1px solid #e5e5e5;
 display: flex;
 justify-content: flex-end;
-margin-right: -50px;
 }
 .modal-footer .btn+.btn {
     margin-bottom: 0;
@@ -17,8 +17,32 @@ margin-right: -50px;
     border-color: #ccc;
     width: 110px;
 }
+.top-container {
+  display: flex;
 
-
+}
+.image-price-container {
+  height: 233px;
+  width: 200px;
+}
+.image-container {
+  height: 200px;
+  width: 200px;
+}
+.product-image {
+  height: 200px;
+  width: 200px;
+  float: left;
+}
+.price-tag {
+  width: 100px;
+  height: 30px;
+  margin-left: 50px;
+}
+.description-text {
+  line-height: 20px;
+  margin-left: 10px;
+}
 
 
 /*body.modal-open,

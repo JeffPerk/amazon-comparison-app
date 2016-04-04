@@ -11,6 +11,7 @@ var app = express();
 ///////SERVER-SIDE CONTROLLERS/////////
 var amazon = require('./api/controllers/amazonCtrl.js');
 var userCtrl = require('./api/controllers/userDataCtrl.js');
+var productController = require('./api/controllers/newProductPost.js');
 var secret = require('./secrets.js');
 
 ///////////////////////////////
@@ -35,7 +36,6 @@ passport.use('local-login', new LocalStrategy({
         return cb(null, false);
       }
       if (!user.validatePassword(password)) {
-        console.log("cb5", cb);
         return cb(null, false);
       }
       return cb(null, user);
@@ -90,9 +90,10 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.post('/login', passport.authenticate('local-login', {failureRedirect: '/login'}), function(req, res) {
-  console.log('Logged in');
-  res.status(200).send({msg: 'okay!'});
+//////////API AUTH////////////
+app.post('/login', passport.authenticate('local-login', {failureRedirect: '/login', session: true}), function(req, res) {
+  console.log('Logged in', req.user);
+  res.status(200).send(req._id);
 });
 
 app.post('/signup', passport.authenticate('local-signup', {failureRedirect: '/login'}), function(req, res) {
@@ -101,7 +102,16 @@ app.post('/signup', passport.authenticate('local-signup', {failureRedirect: '/lo
 
 app.get('/logout', userCtrl.loggedOut);
 
+//////////AMAZON API CALL////////////
 app.get('/api/compare', userCtrl.loggedIn, amazon.getProducts);
+
+//////////WISHLIST PRODUCT MANAGEMENT//////////
+app.post('/api/product', productController.createProduct);
+app.get('/api/wishlist', userCtrl.getWishlist);
+app.put('/api/users', userCtrl.updateUser);
+app.delete('/api/product/delete/:item', userCtrl.deleteProduct);
+
+//////////CHECK IF USER EXISTS////////
 app.get('/users', userCtrl.currentUser);
 
 //port

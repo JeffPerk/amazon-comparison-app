@@ -5,8 +5,12 @@ angular.module('compareApp').service('barChartParsedDataService', function() {
     results.items.forEach(function(value) {
         formattedResults.push({
           title: value.title,
+          description: value.description,
+          brand: value.brand,
+          feature: value.feature,
           thumbImage: value.images.thumbnail,
           largeImage: value.images.large,
+          productLink: value.productLink,
           listPrice: value.listPrice,
           newPrice: value.offerNew,
           usedPrice: value.offerUsed,
@@ -27,23 +31,24 @@ angular.module('compareApp').service('barChartParsedDataService', function() {
 
   var finalParsedResults = [];
   cleanArray.forEach(function(value) {
-    // console.log("value2", value);
     finalParsedResults.push({
       title: value.title,
+      description: value.description,
+      brand: value.brand,
       salesRank: value.salesRank,
+      feature: value.feature,
       thumbImage: value.thumbImage,
       largeImage: value.largeImage,
+      productLink: value.productLink,
       listPrice: makeNumber(value.listPrice),
       newPrice: makeNumber(value.newPrice),
       usedPrice: makeNumber(value.usedPrice),
       amountSaved: makeNumber(value.amountSaved)
     });
   });
-  // console.log("finalParsedResults", finalParsedResults);
   return top5(finalParsedResults);
 
   function top5(arr) {
-    // console.log("arr", arr);
     var top5Array = [];
     for (var i = 0; i < 5; i++) {
       // if (!arr[i]) {
@@ -51,7 +56,6 @@ angular.module('compareApp').service('barChartParsedDataService', function() {
       // }
       top5Array.push(arr[i]);
     }
-    // console.log("top5Array", top5Array);
     return top5Array;
   }
   };

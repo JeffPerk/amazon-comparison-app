@@ -9,7 +9,6 @@ angular.module('compareApp').factory('modalDataService', function($rootScope) {
   service.get = function() {
     return this.data;
   };
-
   return service;
 
 

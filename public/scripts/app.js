@@ -11,12 +11,17 @@ $urlRouterProvider
     .state('login', {
       url: '/login',
       templateUrl: '../views/loginTmpl.html'
-      // controller: 'loginCtrl'
+    })
+    .state('wishlist', {
+      url: '/wishlist',
+      templateUrl: '../views/wishlistTmpl.html',
+      controller: 'wishlistCtrl',
+      resolve: {
+        wishlistData: function(wishlistServ) {
+          return wishlistServ.getWishlist();
+        }
+      }
     });
-    // .state('product', {
-    //   url: '/poduct/:productId',
-    //   templateUrl: '../views/product.html'
-    // });
 
 
 });

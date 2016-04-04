@@ -4,7 +4,7 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-8 col-sm-offset-2 text">
-          <h1><strong>AmazonCompare</strong> Login Form</h1>
+          <h1><strong>Top5</strong> Login Form</h1>
           <div class="description">
           </div>
         </div>
@@ -13,7 +13,7 @@
         <div ng-show="!loginToggle" class="col-sm-6 col-sm-offset-3 form-box" style="display: flex; flex-direction: column; width: 312px; margin: auto; margin-top: 75px;">
           <div class="form-top">
             <div class="form-top-left">
-              <h3>Login to AmazonCompare</h3>
+              <h3>Login to Top5</h3>
               <p>Enter your username and password to log on:</p>
             </div>
             <div class="form-top-right">
@@ -30,7 +30,7 @@
                 <label class="sr-only" for="form-password">Password</label>
                 <input type="password" name="form-password" placeholder="Create password..." class="form-password form-control" id="form-password" ng-model="password" required>
               </div>
-              <button type="submit" class="btn loginForm" style="margin-left: 50px;" ng-click="clickLogin(email, password)">Sign in!</button>
+              <button type="submit" class="btn loginForm" style="margin-left: 50px;" ng-click="clickLogin(email, password); checkUser()">Sign in!</button>
             </form>
           </div>
           <div>

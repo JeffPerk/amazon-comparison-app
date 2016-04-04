@@ -6,7 +6,9 @@
       controller: 'barChartController',
       scope: {
         data: '=',
-        loginCheck: '='
+        loginCheck: '=',
+        wishCheck: '=',
+        homeCheck: '='
         // modalData: '='
       },
       link: function(scope, elem, attrs) {
@@ -15,14 +17,16 @@
           d3.select("body").selectAll("svg").remove();
         }
 
+        function removeTip() {
+          d3.select("body").selectAll("tip").remove();
+        }
+
         function getText(html) {
           var text = $(html).text();
           var data = scope.data;
           for (var i = 0; i < data.length; i++) {
             if (data[i].title === text) {
-              // element.on("click");
                scope.goToView(data[i]);
-              //  scope.modalData = data[i];
             }
           }
         }
@@ -35,10 +39,28 @@
           }
         }
 
+        scope.$watch("wishCheck", function(n, o) {
+          if (o !== n) {
+            if (scope.wishCheck === false) {
+              removeSvg();
+              removeTip();
+            }
+          }
+        });
+        scope.$watch("homeCheck", function(n, o) {
+          if (o !== n) {
+            if (scope.homeCheck === false) {
+              removeSvg();
+              removeTip();
+            }
+          }
+        });
+
         scope.$watch("loginCheck", function(n, o) {
           if (o !== n) {
             if (scope.loginCheck === false) {
               removeSvg();
+              removeTip();
             }
           }
         });
@@ -103,7 +125,8 @@
           var data = scope.data;
           if (data) {
             var titleNames = d3.keys(data[0]).filter(function(key) {
-              return key !== "title" && key !== "thumbImage" && key !== 'largeImage' && key !== 'salesRank';
+              // return key === "amountSaved" && key === "usedPrice" && key === "newPrice" && key === "listPrice";
+              return key !== "title" && key !== "thumbImage" && key !== 'largeImage' && key !== 'salesRank' && key!== 'feature' && key !== 'description' && key !== 'brand' && key !== 'productLink';
             });
 
             data.forEach(function(d) {

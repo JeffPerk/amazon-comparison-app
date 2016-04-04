@@ -54,7 +54,7 @@ input:focus + button .fa {
 button {
 	/*height: 40px;*/
   z-index: 1;
-  width: 50px;
+  width: 49px;
   border: 0 none;
 	border-top-right-radius: 5px;
 	border-bottom-right-radius: 5px;
@@ -159,7 +159,7 @@ ul, ol{
 	border-radius: 5px;
 }
 .loader-nav {
-	height: 40px;
+	height: 20px;
 	width: 40px;
 }
 .fa-search {
@@ -498,6 +498,7 @@ img.img-circle.team-img {
 	width: 30%;
 }
 
+/*d3 tip */
 .d3-tip {
   line-height: 1;
   font-weight: bold;
@@ -518,7 +519,6 @@ img.img-circle.team-img {
   position: absolute;
   text-align: center;
 }
-
 .d3-tip.n:after {
   margin: -1px 0 0 0;
   top: 100%;
@@ -530,4 +530,95 @@ img.img-circle.team-img {
 	margin: 0 auto;
 	width: 80%;
 	height: 500px;
+}
+/*Wishlist*/
+#tf-home-wishlist{
+	background: url(images/pers_proj_img3.jpg);
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	overflow: scroll;
+	color: #cfcfcf;
+}
+
+#tf-home-wishlist .overlay{
+	background: -moz-linear-gradient(top,  rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.73) 17%, rgba(0,0,0,0.66) 35%, rgba(0,0,0,0.55) 62%, rgba(0,0,0,0.4) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.8)), color-stop(17%,rgba(0,0,0,0.73)), color-stop(35%,rgba(0,0,0,0.66)), color-stop(62%,rgba(0,0,0,0.55)), color-stop(100%,rgba(0,0,0,0.4))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.73) 17%,rgba(0,0,0,0.66) 35%,rgba(0,0,0,0.55) 62%,rgba(0,0,0,0.4) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.73) 17%,rgba(0,0,0,0.66) 35%,rgba(0,0,0,0.55) 62%,rgba(0,0,0,0.4) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.73) 17%,rgba(0,0,0,0.66) 35%,rgba(0,0,0,0.55) 62%,rgba(0,0,0,0.4) 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.73) 17%,rgba(0,0,0,0.66) 35%,rgba(0,0,0,0.55) 62%,rgba(0,0,0,0.4) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc000000', endColorstr='#66000000',GradientType=0 ); /* IE6-9 */
+	height: 100vh;
+	background-attachment: fixed;
+}
+#tf-home-wishlist p.lead{
+	color: #e3e3e3;
+}
+.wishlist-container {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	padding-top: 70px;
+}
+.wishlist-content {
+	width: 100%;
+	height: 80%;
+	border: 1px solid white;
+	padding-top: 58px;
+}
+.google-cards {
+	position: relative;
+  width: 280px;
+}
+.google-cards .google-card {
+	height: 264px;
+  width: 277px;
+  overflow: scroll;
+  border-radius: 6px;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.45);
+  background: #fff;
+  margin-bottom: 1.5em;
+}
+.google-cards .google-card .google-card-cover {
+  height: auto;
+}
+.google-cards .google-card .google-card-cover img {
+  width: 100%;
+}
+.google-cards .google-card .google-card-content {
+  padding: 15px;
+  font-size: 14px;
+  color: #333;
+}
+.google-cards .google-card .google-card-content h3 {
+  font-weight: 500;
+  color: #666;
+  margin-bottom: .45em;
+  text-transform: uppercase;
+}
+.google-cards .google-card .google-card-content p {
+  line-height: 1.5;
+}
+.google-cards .google-card .google-card-content .button {
+  display: block;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: #009688;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 25px;
+}
+.google-cards .google-card .google-card-content .button:hover {
+  background: #00796B;
+}
+.remove-product {
+	position: absolute;;
+	top: 5px;
+	left: 5px;
+	color: black;
 }
