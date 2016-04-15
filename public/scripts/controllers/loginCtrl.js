@@ -1,4 +1,5 @@
 angular.module('compareApp').controller('loginCtrl', function($scope, loginServ, loginVerificationService) {
+  
 
   $scope.checkUser = function() {
     loginServ.checkUser().then(function(resp) {
@@ -13,5 +14,6 @@ angular.module('compareApp').controller('loginCtrl', function($scope, loginServ,
   $scope.clickRegister = function(email, username, password) {
     loginServ.register(email, username, password);
   };
+
 
 });

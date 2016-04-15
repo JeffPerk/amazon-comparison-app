@@ -43,7 +43,7 @@
           if (o !== n) {
             if (scope.wishCheck === false) {
               removeSvg();
-              removeTip();
+              destroyTip();
             }
           }
         });

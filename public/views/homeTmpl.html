@@ -39,9 +39,9 @@
     <div class="overlay">
       <div class="content">
         <h1 style="color: white">Welcome to <strong><span class="color">top5</span></strong></h1>
-        <p class="lead">This app compares the <strong style="color: #FCAC45">top 5 products</strong> from your search to help find the <strong style="color: #FCAC45">best product for you</strong></p>
+        <p class="lead">This app compares the <strong style="color: #FCAC45">top 5 products based on sales rank</strong> from your search</p>
         <form method="get">
-          <fieldset>
+          <fieldset class="animated fadeInLeft">
             <select style="margin-left: -39px; width: 288px;" class="form-control" ng-options="index.value as index.value for index in searchIndices" ng-model="searchIndex">
             </select>
             <input type="text" ng-model="keyword" />
@@ -52,10 +52,10 @@
       </div>
     </div>
   </div>
-  <div id="tf-about">
+  <div id="tf-about" ng-show="hideDiv">
     <div class="container">
       <div class="row">
-        <bar-chart data-toggle="modal" data-target="#myModal" login-check="loginCheck" home-check="homeCheck" wish-check="wishCheck" data="barChartData" modal-data="modalData"></bar-chart>
+        <bar-chart ng-show="hideDiv" data-toggle="modal" data-target="#myModal" login-check="loginCheck" home-check="homeCheck" wish-check="wishCheck" data="barChartData" modal-data="modalData"></bar-chart>
       </div>
     </div>
   </div>

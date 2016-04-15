@@ -33,6 +33,7 @@ input {
   color: #666;
   z-index: 2;
   border: 0 none;
+	/*margin-bottom: 1px;*/
 }
 input:focus {
   outline: 0 none;
@@ -286,7 +287,7 @@ a.fa.fa-angle-down:hover{
 /* About Section */
 #tf-about{
 	/*display: none;*/
-	padding: 80px 0;
+	padding-top: 80px;
 	position: relative;
 }
 /*barChart */
@@ -475,6 +476,12 @@ img.img-circle.team-img {
 .newUser, .loginReturn {
 	color: white;
 	cursor: pointer;
+}
+.hidden {
+	display: none;
+}
+.unhidden {
+	display: block;
 }
 
 .sub-nav-search {

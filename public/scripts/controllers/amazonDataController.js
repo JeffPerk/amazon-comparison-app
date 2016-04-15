@@ -3,6 +3,7 @@ angular
 .controller('amazonDataController', function($scope, amazonDataFetchingService, $anchorScroll, $location, loginServ, barChartParsedDataService, productCardParsedDataService, loginVerificationService) {
   $scope.showLoader = false;
   $scope.showSearch = false;
+  $scope.hideDiv = false;
 
 
   $scope.getInfo = function(keyword, searchIndex) {
@@ -14,6 +15,7 @@ angular
       $location.hash("tf-about");
       $scope.keyword = '';
       $scope.showLoader = false;
+      $scope.hideDiv = true;
       $scope.showSearch = true;
       $anchorScroll();
     });
