@@ -4,6 +4,7 @@ var q = require('q');
 
 module.exports.parseResults = function(results) {
     var deferred = q.defer();
+    try {
     var overview = results.ItemSearchResponse.Items[0].Item;
     var itemsOverview = {
         keyword: results.ItemSearchResponse.Items[0].Request[0].ItemSearchRequest[0].Keywords[0],
@@ -13,8 +14,12 @@ module.exports.parseResults = function(results) {
         more: results.ItemSearchResponse.Items[0].MoreSearchResultsUrl[0],
         items: getItems(overview)
     };
+  } catch(err) {
+    return err;
+  }
 
     function getItems(data) {
+      try {
         var item = [];
         data.map(function(k, i) {
             var attributes = k.ItemAttributes[0];
@@ -56,7 +61,10 @@ module.exports.parseResults = function(results) {
             });
         });
         return item;
+    } catch(err) {
+      return err;
     }
+  }
 
     function validateTotalUsed(offerSummary) {
       if (offerSummary.TotalUsed && offerSummary.TotalUsed[0]) {
