@@ -1,4 +1,5 @@
 <section id="main-container" ng-controller="amazonDataController">
+
   <nav id="tf-menu" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
@@ -36,6 +37,13 @@
     </div>
   </nav>
   <div id="tf-home" class="text-center">
+    <!-- <div class="alert-message">
+      <div class="warning-message">
+        <strong>Welcome to my demo! This site may seem simple, but has a lot going on in the background.
+        This site uses the Amazon API, which I found isn't very consistent with its data structure.
+      </strong>
+      </div>
+    </div> -->
     <div class="overlay">
       <div class="content">
         <h1 style="color: white">Welcome to <strong><span class="color">top5</span></strong></h1>
@@ -60,7 +68,17 @@
     </div>
   </div>
   <div ui-view></div>
-
+  <div id="overlay">
+    <div id="overlay-content">
+      <h1>Welcome to Top5!</h1>
+      Some information about this site. You will notice that there are some searches that will yield no results, or may even crash the browser. This is due
+      to the return data that returns from the API, which is inconsistent. I've yet tested all search indices to see which are broken, but most I have found to work. I apologize for the inconvenience,
+      but I hope you enjoy your stay! <br> <strong>Click anywhere to begin!</strong>
+    </div>
+  </div>
 </section>
+
+
+
 
 <modal data="productData"></modal>
