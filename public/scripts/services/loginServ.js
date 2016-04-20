@@ -1,5 +1,5 @@
 angular.module('compareApp').service('loginServ', function($q, $http, $state, loginVerificationService) {
-var baseUrl = process.env.PORT;
+var baseUrl = 'https://top5-personal-project.herokuapp.com';
   this.register = function(email, username, password) {
     $http({
       method: 'POST',
