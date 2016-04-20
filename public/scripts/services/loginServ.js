@@ -1,5 +1,5 @@
 angular.module('compareApp').service('loginServ', function($q, $http, $state, loginVerificationService) {
-var baseUrl = 'http://localhost:9000';
+var baseUrl = process.env.PORT;
   this.register = function(email, username, password) {
     $http({
       method: 'POST',
