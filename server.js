@@ -118,6 +118,6 @@ app.delete('/api/product/delete/:item', userCtrl.deleteProduct);
 app.get('/users', userCtrl.currentUser);
 
 //port
-app.listen('9000', function() {
+app.listen(process.env.PORT, function() {
   console.log('Listening to port 9000');
 });
