@@ -175,6 +175,13 @@ img { max-width: 100%; }
 	margin-top: 25px;
 }
 
+#form-username {
+  margin-bottom: 5px;
+}
+#form-password {
+  margin-bottom: 5px;
+}
+
 
 /***** Media queries *****/
 
