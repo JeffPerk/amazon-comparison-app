@@ -6,6 +6,7 @@ angular.module('compareApp').controller('wishlistCtrl', function($scope, wishlis
   )};
 
   if (wishlistData) {
+    console.log(wishlistData);
     $scope.wishlist = wishlistData;
   }
 
