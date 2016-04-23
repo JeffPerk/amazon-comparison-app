@@ -7,6 +7,9 @@ angular
 
 
   $scope.getInfo = function(keyword, searchIndex) {
+    if (!keyword) {
+      return 0;
+    }
     $scope.showLoader = true;
     var resultsArray = [];
     var pageNumber = 1
