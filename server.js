@@ -12,12 +12,26 @@ var app = express();
 var amazon = require('./api/controllers/amazonCtrl.js');
 var userCtrl = require('./api/controllers/userDataCtrl.js');
 var productController = require('./api/controllers/newProductPost.js');
-var secret = require('./secrets.js');
+// var secret = require('./secrets.js');
+
+//////////MIDDLEWARE//////////
+app.use(bodyParser.json());
+app.use(express.static(__dirname + '/public'));
+app.use(cors());
+app.use(session({
+  secret: process.env.SESSIONSECRET,
+  resave: false,
+  saveUninitialized: false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 ///////////////////////////////
 //CONNECTING TO THE DATABASE//
 /////////////////////////////
-mongoose.connect('mongodb://localhost/compare');
+mongoose.connect(process.env.MONGODB_URI)
+// mongoose.connect('mongodb://localhost/compare');
 mongoose.connection.once('open', function() {
   console.log("Connected to MongoDB");
 });
@@ -77,18 +91,7 @@ passport.deserializeUser(function(id, cb) {
   });
 });
 
-//////////MIDDLEWARE//////////
-app.use(bodyParser.json());
-app.use(express.static(__dirname + '/public'));
-app.use(cors());
-app.use(session({
-  secret: secret.sessionSecret,
-  resave: false,
-  saveUninitialized: false
-}));
 
-app.use(passport.initialize());
-app.use(passport.session());
 
 //////////API AUTH////////////
 app.post('/login', passport.authenticate('local-login', {failureRedirect: '/login', session: true}), function(req, res) {
@@ -115,6 +118,6 @@ app.delete('/api/product/delete/:item', userCtrl.deleteProduct);
 app.get('/users', userCtrl.currentUser);
 
 //port
-app.listen('9000', function() {
+app.listen(process.env.PORT, function() {
   console.log('Listening to port 9000');
 });

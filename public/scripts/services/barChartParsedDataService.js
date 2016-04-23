@@ -2,6 +2,7 @@ angular.module('compareApp').service('barChartParsedDataService', function() {
 
   this.prepareData = function(results) {
     var formattedResults = [];
+    try {
     results.items.forEach(function(value) {
         formattedResults.push({
           title: value.title,
@@ -18,6 +19,9 @@ angular.module('compareApp').service('barChartParsedDataService', function() {
           salesRank: value.salesRank
         });
     });
+  } catch (err) {
+    return err;
+  }
   var cleanArray = [];
   formattedResults.forEach(function(value) {
     if(value.listPrice && value.newPrice && value.salesRank) {
@@ -30,6 +34,7 @@ angular.module('compareApp').service('barChartParsedDataService', function() {
   });
 
   var finalParsedResults = [];
+  try {
   cleanArray.forEach(function(value) {
     finalParsedResults.push({
       title: value.title,
@@ -46,6 +51,9 @@ angular.module('compareApp').service('barChartParsedDataService', function() {
       amountSaved: makeNumber(value.amountSaved)
     });
   });
+} catch (err) {
+  return err;
+}
   return top5(finalParsedResults);
 
   function top5(arr) {
