@@ -52,7 +52,7 @@
           <fieldset class="animated fadeInLeft">
             <select style="margin-left: -39px; width: 288px;" class="form-control" ng-options="index.value as index.value for index in searchIndices" ng-model="searchIndex">
             </select>
-            <input type="text" style="width: 200px" ng-model="keyword" />
+            <input type="text" ng-model="keyword" />
             <button ng-show="!showLoader" type="submit" ng-click="getInfo(keyword, searchIndex)"><i class="fa fa-search"></i></button>
             <img ng-show="showLoader" class="loader" src="../styles/images/orangegif.gif" />
           </fieldset>
