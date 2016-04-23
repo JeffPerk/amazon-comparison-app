@@ -196,6 +196,9 @@ ul, ol {
     color: #fff;
     font-weight: 900;
 }
+#barChartInput {
+  width: 200px;
+}
 #tf-menu {
     /*padding: 20px;*/
     transition: all 0.8s;

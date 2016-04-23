@@ -26,7 +26,7 @@
         </div>
         <div class="searchInput">
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search" ng-model="keyword"/>
+            <input type="text" class="form-control" id="barChartInput" placeholder="Search" ng-model="keyword"/>
             <span class="input-group-addon" type="button">
               <i ng-show="!showLoader" type="submit" ng-click="getInfo(keyword, searchIndex)" class="glyphicon glyphicon-search"></i>
               <img ng-show="showLoader" class="loader-nav" src="../styles/images/orangegif.gif" />
@@ -52,7 +52,7 @@
           <fieldset class="animated fadeInLeft">
             <select style="margin-left: -39px; width: 288px;" class="form-control" ng-options="index.value as index.value for index in searchIndices" ng-model="searchIndex">
             </select>
-            <input type="text" style="width: 260px" ng-model="keyword" />
+            <input type="text" style="width: 200px" ng-model="keyword" />
             <button ng-show="!showLoader" type="submit" ng-click="getInfo(keyword, searchIndex)"><i class="fa fa-search"></i></button>
             <img ng-show="showLoader" class="loader" src="../styles/images/orangegif.gif" />
           </fieldset>
