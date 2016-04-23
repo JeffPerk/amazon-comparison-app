@@ -122,7 +122,8 @@
 
         function updateChart() {
 
-          var data = scope.data;
+          var data = 0;
+          data = scope.data;
           if (data) {
             var titleNames = d3.keys(data[0]).filter(function(key) {
               // return key === "amountSaved" && key === "usedPrice" && key === "newPrice" && key === "listPrice";
