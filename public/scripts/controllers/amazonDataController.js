@@ -39,10 +39,10 @@ angular
   if(!$scope.searchIndex) {
     $scope.searchIndex = "All";
   }
-
-  // $('#overlay').css({'opacity': 0, 'display': "block"}).animate({'opacity': 1}, 1000).on("click", function() {
-  //   $('#overlay').animate({'opacity': 0}, 1000)
-  //   $('#overlay').css({'display': "none"});
+//////jQuery///////
+  $('#overlay').css({'opacity': 0, 'display': "block"}).animate({'opacity': 1}, 1000).on("click", function() {
+    $('#overlay').animate({'opacity': 0}, 1000)
+    $('#overlay').css({'display': "none"});
   });
 
 
