@@ -18,7 +18,7 @@
         }
 
         function removeTip() {
-          d3.select("body").selectAll("tip").remove();
+          d3.select("svg").selectAll("tip").remove();
         }
 
         function getText(html) {
