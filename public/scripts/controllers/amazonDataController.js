@@ -7,6 +7,9 @@ angular
 
 
   $scope.getInfo = function(keyword, searchIndex) {
+    if (!keyword) {
+      return 0;
+    }
     $scope.showLoader = true;
     var resultsArray = [];
     var pageNumber = 1
@@ -36,7 +39,7 @@ angular
   if(!$scope.searchIndex) {
     $scope.searchIndex = "All";
   }
-
+//////jQuery///////
   $('#overlay').css({'opacity': 0, 'display': "block"}).animate({'opacity': 1}, 1000).on("click", function() {
     $('#overlay').animate({'opacity': 0}, 1000)
     $('#overlay').css({'display': "none"});

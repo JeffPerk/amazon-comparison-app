@@ -24,7 +24,7 @@ angular.module('compareApp').service('wishlistServ', function($http, $q) {
           wishlist: response._id
         }
       }).success(function(response) {
-        console.log(response);
+        alert("Added to wishlist!");
       });
     });
   };
