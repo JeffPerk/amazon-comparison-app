@@ -5,9 +5,7 @@ angular.module('compareApp')
 
       $scope.$on('activate modal', function() {
         $scope.modalData = modalDataService.get();
-        console.log('modalData', $scope.modalData);
         $scope.features = $scope.modalData.feature;
-        // wishlistServ.getUserProduct($scope.modalData);
         $scope.$digest();
       });
 
